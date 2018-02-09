@@ -1,0 +1,51 @@
+{
+  "users": {
+    "pziemkowski": {
+      "firstName": "Patryk",
+      "lastName": "Ziemkowski",
+      "type": "human",
+      "rooms": {
+        "hotfix": true
+      }
+    },
+    "mziemkowska": {
+      "firstName": "Monika",
+      "lastName": "Ziemkowska",
+      "type": "human",
+      "rooms": {
+        "hotfix": true
+      }
+    },
+    "tziemkowski": {
+      "firstName": "Teddy",
+      "lastName": "Ziemkowski",
+      "type": "dog",
+      "rooms": {
+        "commit": true
+      }
+    }
+  },
+  "rooms": {
+    "hotfix": {
+      "name": "Hotfix",
+      "alt": "Sandbox"
+    },
+    "commit": {
+      "name": "Commit",
+      "alt": "Konf"
+    },
+    "master": {
+      "name": "Master",
+      "alt": "Master"
+    }
+  },
+  "members": {
+    "hotfix": {
+      "pziemkowski": true,
+      "mziemkowska": true
+    },
+    "commit": {
+      "tziemkowski": true
+    }
+  }
+}

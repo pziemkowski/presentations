@@ -1,0 +1,24 @@
+{
+  "rules": {
+    "users": {
+      ".read": true,
+      ".write": false,
+      "$uid": {
+        ".write": "$uid === auth.uid",
+        "firstName": {
+          ".validate": "newData.isString() && newData.val().length < 40"
+        },
+        "lastName": {
+          ".validate": "newData.isString() && newData.val().length < 40"
+        },
+        "type": {
+          ".validate": "newData.val().matches(/(human|dog|unknown)/)"
+        }
+      }
+    },
+    "rooms": {
+      ".read": true,
+      ".write": false
+    }
+  }
+}

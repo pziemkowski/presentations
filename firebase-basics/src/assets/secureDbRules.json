@@ -1,0 +1,15 @@
+{
+  "rules": {
+    "users": {
+      ".read": true,
+      ".write": false,
+      "$uid": { // pziemkowski
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "rooms": {
+      ".read": true,
+      ".write": false
+    }
+  }
+}
