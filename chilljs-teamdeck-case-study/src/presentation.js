@@ -17,12 +17,42 @@ import {
   Layout,
   Fill,
   Fit,
-  Appear
+  Appear,
+  Code,
+  CodePane
 } from 'spectacle';
 import CodeSlide from 'spectacle-code-slide';
 
 // Import theme
 import createTheme from 'spectacle/lib/themes/default';
+
+import yoga from 'yoga-layout';
+
+const rootNode = yoga.Node.create();
+
+rootNode.setPadding(yoga.EDGE_TOP, 10);
+rootNode.setPadding(yoga.EDGE_BOTTOM, 10);
+
+rootNode.setHeight(100);
+rootNode.setWidth(100);
+
+rootNode.setDisplay(yoga.DISPLAY_FLEX);
+rootNode.setFlexWrap(yoga.WRAP_NO_WRAP);
+rootNode.setFlexDirection(yoga.FLEX_DIRECTION_COLUMN);
+
+const rows = [];
+for (let i = 0; i < 10; i += 1) {
+  const rowNode = yoga.Node.create();
+  rowNode.setFlexGrow(1);
+  rootNode.insertChild(rowNode, i);
+  rows.push(rowNode);
+}
+
+rootNode.calculateLayout();
+
+rows.forEach((row, i) => {
+  console.log(`Row ${i} y: ${row.getComputedTop()}, w: ${row.getComputedHeight()}, h: ${row.getComputedWidth()} `);
+});
 
 // Require CSS
 require('normalize.css');
@@ -69,11 +99,7 @@ export default class Presentation extends React.Component {
             A complete resource management solution
           </Text>
 
-          <Layout>
-            <Fit>
-              <video src={require('./assets/cs_teamdeck_1_29-2.mp4')} width={920} autoPlay loop />
-            </Fit>
-          </Layout>
+          <video src={require('./assets/cs_teamdeck_1_29-2.mp4')} width={920} autoPlay loop />
         </Slide>
 
         <Slide transition={['fade']} bgColor="secondary">
@@ -81,11 +107,7 @@ export default class Presentation extends React.Component {
             New beginnings
           </Text>
 
-          <Layout>
-            <Fit>
-              <video src={require('./assets/new_calendar.mp4')} width={920} autoPlay loop />
-            </Fit>
-          </Layout>
+          <video src={require('./assets/new_calendar.mp4')} width={920} autoPlay loop />
         </Slide>
 
         <Slide transition={['fade']} bgColor="secondary">
@@ -109,7 +131,7 @@ export default class Presentation extends React.Component {
         <Slide transition={['fade']} bgColor="secondary">
           <Text size={6} textColor="primary" margin="50px 0">
             <Text textColor="tertiary" style={{ display: 'inline' }}>Culling</Text> - Reduce the number of elements in a
-            rendering tree
+            render tree
           </Text>
 
           <Image src={require('./assets/culling.png')} width={920} />
@@ -191,8 +213,41 @@ export default class Presentation extends React.Component {
           lang="js"
           code={require('./assets/objectPooling').code}
           ranges={[
-            { loc: [0, 0] },
+            { loc: [3, 4], note: 'Let\'s define an object pool registry' },
+            { loc: [4, 5] },
+            { loc: [6, 7] },
+            { loc: [7, 11], note: 'Get instance if it exists' },
+            { loc: [12, 13], note: 'Create new instance' },
+            { loc: [15, 18], note: 'Return instance to the pool' },
+            { loc: [20, 21] },
+            { loc: [22, 28] },
+            { loc: [29, 39] },
+            { loc: [45, 51] },
+            { loc: [51, 59], note: 'Retrieve instance and set properties' },
+            { loc: [40, 44], note: 'Release old instances' },
           ]} />
+
+        <Slide transition={['fade']} bgColor="secondary">
+          <Text size={6} textColor="primary" margin="50px 0">
+            <Text textColor="tertiary" style={{ display: 'inline' }}>Relative positioning</Text> - how do I do it on
+            Canvas?
+          </Text>
+
+          <Appear>
+            <Code textColor="primary">
+              npm install yoga-layout
+            </Code>
+          </Appear>
+
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="secondary" align="center center">
+          <Text size={6} textColor="primary" margin="50px 0">
+            <Text textColor="tertiary" style={{ display: 'inline' }}>YOGA</Text> by Facebook
+          </Text>
+
+          <video src={require('./assets/yoga.mp4')} height={500} autoPlay loop />
+        </Slide>
       </Deck>
     );
   }

@@ -1,11 +1,5 @@
 export const code = `
 import SpatialHash from 'spatial-hash';
-const hash = new SpatialHash({
-  x: 0,
-  y: 0,
-  width: 10 * width,
-  height: 10 * height
-}, 20);
 
 class BunnyPool {
   instances = [];
@@ -26,6 +20,13 @@ class BunnyPool {
 
 const bunnyPool = new BunnyPool();
 
+const hash = new SpatialHash({
+  x: 0,
+  y: 0,
+  width: 10 * width,
+  height: 10 * height
+}, 20);
+
 for (let i = 0; i < 10000; i += 1) {
   hash.insert({
     range: {
@@ -37,11 +38,10 @@ for (let i = 0; i < 10000; i += 1) {
   });
 }
 
-const removedBunnies = app.stage.removeChildren();
-for (let k = 0; k < removedBunnies.count; k += 1) {
-  const bunny = removedBunnies[k];
+const oldBunnies = app.stage.removeChildren();
+oldBunnies.forEach((bunny) => {
   bunnyPool.release(bunny)
-}
+});
 
 const visible = hash.query({
   x: 0,
@@ -49,13 +49,12 @@ const visible = hash.query({
   height: height,
   width: width
 });
-for (let j = 0; j < visible.count; j += 1) {
-  const bunnyData = visible[j];
+visible.forEach((bunnyData) => {
   const bunny = bunnyPool.getInstance();
   
   bunny.x = bunnyData.range.x;
   bunny.y = bunnyData.range.y;
   
   app.stage.addChild(bunny);
-}
+});
 `;
