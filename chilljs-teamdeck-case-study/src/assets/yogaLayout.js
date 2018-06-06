@@ -1,16 +1,19 @@
+export const code = `
 import yoga from 'yoga-layout';
 
 const rootNode = yoga.Node.create();
 
-rootNode.setPadding(yoga.EDGE_TOP, 10);
-rootNode.setPadding(yoga.EDGE_BOTTOM, 10);
-
 rootNode.setHeight(100);
 rootNode.setWidth(100);
 
+rootNode.setPadding(yoga.EDGE_TOP, 10);
+rootNode.setPadding(yoga.EDGE_BOTTOM, 10);
+
 rootNode.setDisplay(yoga.DISPLAY_FLEX);
 rootNode.setFlexWrap(yoga.WRAP_NO_WRAP);
-rootNode.setFlexDirection(yoga.FLEX_DIRECTION_COLUMN);
+rootNode.setFlexDirection(
+  yoga.FLEX_DIRECTION_COLUMN
+);
 
 const rows = [];
 for (let i = 0; i < 10; i += 1) {
@@ -23,18 +26,19 @@ for (let i = 0; i < 10; i += 1) {
 rootNode.calculateLayout();
 
 rows.forEach((row, i) => {
-  console.log(`Row ${i} y: ${row.getComputedTop()}, w: ${row.getComputedHeight()}, h: ${row.getComputedWidth()} `);
+  console.log(\`Row \${i} y: \${row.getComputedTop()}, h: \${row.getComputedHeight()}, w: \${row.getComputedWidth()} \`);
 });
 
 /*
-Row 0 y: 10, w: 8, h: 100
-Row 1 y: 18, w: 8, h: 100
-Row 2 y: 26, w: 8, h: 100
-Row 3 y: 34, w: 8, h: 100
-Row 4 y: 42, w: 8, h: 100
-Row 5 y: 50, w: 8, h: 100
-Row 6 y: 58, w: 8, h: 100
-Row 7 y: 66, w: 8, h: 100
-Row 8 y: 74, w: 8, h: 100
-Row 9 y: 82, w: 8, h: 100
+Row 0 y: 10, h: 8, w: 100
+Row 1 y: 18, h: 8, w: 100
+Row 2 y: 26, h: 8, w: 100
+Row 3 y: 34, h: 8, w: 100
+Row 4 y: 42, h: 8, w: 100
+Row 5 y: 50, h: 8, w: 100
+Row 6 y: 58, h: 8, w: 100
+Row 7 y: 66, h: 8, w: 100
+Row 8 y: 74, h: 8, w: 100
+Row 9 y: 82, h: 8, w: 100
  */
+ `;
