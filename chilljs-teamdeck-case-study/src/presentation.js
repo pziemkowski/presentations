@@ -1,3 +1,4 @@
+/* eslint import/no-webpack-loader-syntax: off */
 // Import React
 import React from 'react';
 
@@ -12,7 +13,13 @@ import {
   Quote,
   Slide,
   Text,
+  Image,
+  Layout,
+  Fill,
+  Fit,
+  Appear
 } from 'spectacle';
+import CodeSlide from 'spectacle-code-slide';
 
 // Import theme
 import createTheme from 'spectacle/lib/themes/default';
@@ -42,53 +49,150 @@ export default class Presentation extends React.Component {
         theme={theme}
       >
         <Slide transition={['zoom']} bgColor="primary">
+          <Text margin="20px 0" textColor="tertiary" textSize={1} fit bold>
+            PIXI.js – Canvas – 60 fps
+          </Text>
+
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Spectacle Boilerplate
+            Teamdeck – Analiza technik optymalizacji
           </Heading>
-          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
-            open the presentation/index.js file to get started
+
+          <Text textColor="tertiary" textAlign="right" margin="50px 0 0" textSize={18}>
+            – Patryk Ziemkowski / Head of frontend development @ Apptension
           </Text>
         </Slide>
-        <Slide transition={['fade']} bgColor="tertiary">
-          <Heading size={6} textColor="primary" caps>
-            Typography
-          </Heading>
-          <Heading size={1} textColor="secondary">
-            Heading 1
-          </Heading>
-          <Heading size={2} textColor="secondary">
-            Heading 2
-          </Heading>
-          <Heading size={3} textColor="secondary">
-            Heading 3
-          </Heading>
-          <Heading size={4} textColor="secondary">
-            Heading 4
-          </Heading>
-          <Heading size={5} textColor="secondary">
-            Heading 5
-          </Heading>
-          <Text size={6} textColor="secondary">
-            Standard text
+
+        <Slide transition={['fade']} bgColor="secondary">
+          <Image src={require('./assets/teamdeck-logo.png')} />
+
+          <Text size={6} textColor="primary" margin="50px 0">
+            A complete resource management solution
           </Text>
+
+          <Layout>
+            <Fit>
+              <video src={require('./assets/cs_teamdeck_1_29-2.mp4')} width={920} autoPlay loop />
+            </Fit>
+          </Layout>
         </Slide>
-        <Slide transition={['fade']} bgColor="primary" textColor="tertiary">
-          <Heading size={6} textColor="secondary" caps>
-            Standard List
-          </Heading>
-          <List>
-            <ListItem>Item 1</ListItem>
-            <ListItem>Item 2</ListItem>
-            <ListItem>Item 3</ListItem>
-            <ListItem>Item 4</ListItem>
+
+        <Slide transition={['fade']} bgColor="secondary">
+          <Text size={6} textColor="primary" margin="50px 0">
+            New beginnings
+          </Text>
+
+          <Layout>
+            <Fit>
+              <video src={require('./assets/new_calendar.mp4')} width={920} autoPlay loop />
+            </Fit>
+          </Layout>
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="secondary">
+          <Text size={6} textColor="primary" margin="50px 0">
+            What do we need?
+          </Text>
+
+          <List textColor="primary">
+            <ListItem margin="10px 0"><Text textColor="tertiary" style={{ display: 'inline' }}>60 FPS</Text> for all
+              Canvas
+              updates</ListItem>
+            <ListItem margin="10px 0">Full <Text textColor="tertiary"
+                                                 style={{ display: 'inline' }}>Interactivity</Text> of UI
+              elements</ListItem>
+            <ListItem margin="10px 0"><Text textColor="tertiary" style={{ display: 'inline' }}>Relative
+              positioning</Text> of UI
+              elements</ListItem>
           </List>
         </Slide>
-        <Slide transition={['fade']} bgColor="secondary" textColor="primary">
-          <BlockQuote>
-            <Quote>Example Quote</Quote>
-            <Cite>Author</Cite>
-          </BlockQuote>
+
+        <Slide transition={['fade']} bgColor="secondary">
+          <Text size={6} textColor="primary" margin="50px 0">
+            <Text textColor="tertiary" style={{ display: 'inline' }}>Culling</Text> - Reduce the number of elements in a
+            rendering tree
+          </Text>
+
+          <Image src={require('./assets/culling.png')} width={920} />
         </Slide>
+
+        <CodeSlide
+          transition={['fade']}
+          lang="js"
+          code={require('./assets/cullingSimple').code}
+          ranges={[
+            { loc: [0, 0], title: 'Simplest possible culling' },
+            { loc: [4, 8], note: 'Let\'s create a PIXI app' },
+            { loc: [10, 11] },
+            { loc: [11, 12] },
+            { loc: [13, 15] },
+            { loc: [16, 17] },
+            { loc: [19, 20], note: 'Clear canvas' },
+            { loc: [21, 27], note: 'Add visible elements to canvas' },
+            { loc: [28, 34] },
+            { loc: [21, 22], note: 'Oops, we\'re iterating over all objects!' },
+          ]} />
+
+        <Slide transition={['fade']} bgColor="secondary">
+          <Text size={6} textColor="primary" margin="50px 0">
+            <Text textColor="tertiary" style={{ display: 'inline' }}>Spatial hashing</Text> – divide space into buckets
+            and quickly find potential collisions
+          </Text>
+
+          <Image src={require('./assets/culling.png')} />
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="secondary">
+          <Text size={6} textColor="primary" margin="50px 0">
+            <Text textColor="tertiary" style={{ display: 'inline' }}>Spatial hashing</Text>
+          </Text>
+
+          <Image src={require('./assets/spatialHash.png')} />
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="secondary">
+          <Text size={6} textColor="primary" margin="50px 0">
+            <Text textColor="tertiary" style={{ display: 'inline' }}>Spatial hashing</Text>
+          </Text>
+
+          <Image src={require('./assets/spatialHashKernel.png')} />
+        </Slide>
+
+        <CodeSlide
+          transition={['fade']}
+          lang="js"
+          code={require('./assets/spatialHashing').code}
+          ranges={[
+            { loc: [0, 0], title: 'npm install spatial-hash' },
+            { loc: [1, 8], note: 'Create new spatial hash object' },
+            { loc: [9, 14] },
+            { loc: [15, 24], note: 'Insert element to a hash' },
+            { loc: [26, 27], note: 'Clear canvas' },
+            { loc: [28, 34], note: 'Retrieve visible objects' },
+            { loc: [35, 39], note: 'Iterate over and render only visible objects' },
+          ]} />
+
+        <Slide transition={['fade']} bgColor="secondary">
+          <Text size={6} textColor="primary" margin="50px 0">
+            <Text textColor="tertiary" style={{ display: 'inline' }}>Object pooling</Text> - Create in advance
+            and reuse expensive objects
+          </Text>
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="secondary">
+          <Text size={6} textColor="primary" margin="50px 0">
+            <Text textColor="tertiary" style={{ display: 'inline' }}>Object pooling</Text>
+          </Text>
+
+          <Image src={require('./assets/pooling.png')} />
+        </Slide>
+
+        <CodeSlide
+          transition={['fade']}
+          lang="js"
+          code={require('./assets/objectPooling').code}
+          ranges={[
+            { loc: [0, 0] },
+          ]} />
       </Deck>
     );
   }
