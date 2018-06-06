@@ -1,28 +1,9 @@
 /* eslint import/no-webpack-loader-syntax: off */
 // Import React
 import React from 'react';
-
 // Import Spectacle Core tags
-import {
-  BlockQuote,
-  Cite,
-  Deck,
-  Heading,
-  ListItem,
-  List,
-  Quote,
-  Slide,
-  Text,
-  Image,
-  Layout,
-  Fill,
-  Fit,
-  Appear,
-  Code,
-  CodePane
-} from 'spectacle';
+import { Appear, Code, Deck, Heading, Image, List, ListItem, Slide, Text } from 'spectacle';
 import CodeSlide from 'spectacle-code-slide';
-
 // Import theme
 import createTheme from 'spectacle/lib/themes/default';
 
@@ -258,18 +239,46 @@ export default class Presentation extends React.Component {
             { loc: [5, 7] },
             { loc: [8, 10] },
             { loc: [11, 16], note: 'Is this... flex?' },
-            { loc: [18, 24]},
-            { loc: [19, 20]},
-            { loc: [20, 21]},
-            { loc: [21, 22]},
-            { loc: [22, 23]},
-            { loc: [25, 26], note: 'The tree is ready, let\'s calculate the layout'},
-            { loc: [27, 30]},
-            { loc: [32, 33]},
-            { loc: [33, 34]},
-            { loc: [34, 35]},
-            { loc: [32, 42]},
+            { loc: [18, 24] },
+            { loc: [19, 20] },
+            { loc: [20, 21] },
+            { loc: [21, 22] },
+            { loc: [22, 23] },
+            { loc: [25, 26], note: 'The tree is ready, let\'s calculate the layout' },
+            { loc: [27, 30] },
+            { loc: [32, 33] },
+            { loc: [33, 34] },
+            { loc: [34, 35] },
+            { loc: [32, 42] },
           ]} />
+
+        <Slide transition={['fade']} bgColor="secondary">
+          <Text size={6} textColor="primary" margin="50px 0">
+            <Text textColor="tertiary" style={{ display: 'inline' }}>Sprites, sprites, sprites</Text>
+          </Text>
+
+          <Text textColor="primary">
+            Try to find elements that are similar and make reusable textures out of them
+          </Text>
+
+          <Image margin="50px 0" src={require('./assets/blocks.png')}/>
+        </Slide>
+
+        <CodeSlide
+          transition={['fade']}
+          lang="js"
+          code={require('./assets/sprites').code}
+          ranges={[
+            { loc: [1, 12] },
+            { loc: [13, 14] },
+            { loc: [15, 16] },
+            { loc: [16, 19] },
+            { loc: [20, 25] },
+          ]} />
+
+        <Slide>
+          <Text textColor="tertiary" margin="50px 0">Q&A</Text>
+        </Slide>
       </Deck>
     );
   }
