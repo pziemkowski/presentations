@@ -1,0 +1,12 @@
+//sw.js
+
+self.addEventListener('install', (event) => {
+    const cacheReady = caches
+        .open('cacheName')
+        .then((cache) => cache.addAll([
+                '/main.js',
+                '/main.css'
+        ]))
+
+    event.waitUntil(cacheReady);
+});

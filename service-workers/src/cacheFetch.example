@@ -1,0 +1,17 @@
+//sw.js
+
+self.addEventListener('fetch', (event) => {
+    const { request } = event;
+
+    const response = caches
+        .match(request)
+        .then((response) => {
+            if (response) {
+              return response;
+            }
+
+            return fetch(request);
+        })
+
+    event.respondWith(response);
+});

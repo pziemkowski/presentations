@@ -1,0 +1,15 @@
+//sw.js
+
+self.addEventListener('fetch', (event) => {
+    const { request } = event;
+
+    const response = fetch(request)
+        .then((res) => caches
+            .open('cacheName')
+            .then((cache) => cache
+                .put(request, response.clone())
+            ))
+        );
+
+    event.respondWith(response);
+});

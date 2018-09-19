@@ -1,0 +1,5 @@
+//sw.js
+
+self.addEventListener('activate', (event) => {
+    // Perform activation steps
+});
