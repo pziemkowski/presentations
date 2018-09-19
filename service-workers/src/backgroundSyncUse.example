@@ -1,0 +1,7 @@
+// sw.js
+
+self.addEventListener('sync', (event) => {
+    if (event.tag == 'syncName') {
+        event.waitUntil(doSomeStuff());
+    }
+});

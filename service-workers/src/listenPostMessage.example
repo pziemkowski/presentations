@@ -1,0 +1,5 @@
+// main.js
+
+navigator.serviceWorker.addEventListener('message' , (message) => {
+    console.log(message)
+});

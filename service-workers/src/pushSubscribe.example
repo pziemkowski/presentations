@@ -1,0 +1,13 @@
+// main.js
+
+navigator.serviceWorker.ready.then((registration) => {
+    registration.pushManager
+        .subscribe({
+          applicationServerKey: 'PUBLIC_KEY',
+          userVisibleOnly: true,
+        })
+        .then((subscription) => {
+            sendSubscriptionToBackend(subscription);
+        });
+
+})

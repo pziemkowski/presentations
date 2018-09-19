@@ -1,0 +1,11 @@
+// sw.js
+
+self.clients.matchAll().then((clients) => {
+    clients.forEach((client) => {
+        client.postMessage({
+            title: 'Message title',
+            body: 'Message body',
+            anythingElse: 'I can be anything!'
+        });
+    });
+});

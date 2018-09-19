@@ -27,6 +27,13 @@ const activateExample = require('!raw-loader!./activate.example'); // eslint-dis
 const cacheDefineExample = require('!raw-loader!./cacheDefine.example'); // eslint-disable-line
 const cacheFetchExample = require('!raw-loader!./cacheFetch.example'); // eslint-disable-line
 const cacheUpdateExample = require('!raw-loader!./cacheUpdate.example'); // eslint-disable-line
+const pushGetSubscribtionExample = require('!raw-loader!./pushGetSubscribtion.example'); // eslint-disable-line
+const pushSubscribeExample = require('!raw-loader!./pushSubscribe.example'); // eslint-disable-line
+const pushShowNotificationExample = require('!raw-loader!./pushShowNotification.example'); // eslint-disable-line
+const listenPostMessageExample = require('!raw-loader!./listenPostMessage.example'); // eslint-disable-line
+const sendPostMessageExample = require('!raw-loader!./sendPostMessage.example'); // eslint-disable-line
+const backgroundSyncRegisterExample = require('!raw-loader!./backgroundSyncRegister.example'); // eslint-disable-line
+const backgroundSyncUseExample = require('!raw-loader!./backgroundSyncUse.example'); // eslint-disable-line
 
 // Require CSS
 require('normalize.css');
@@ -150,6 +157,12 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide transition={['fade']} bgColor="tertiary">
+          <Heading size={2} fit caps lineHeight={1} textColor="secondary">
+            Cache API
+          </Heading>
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="tertiary">
           <Heading size={6} textColor="secondary" caps>
             Cache API – cache static files
           </Heading>
@@ -196,24 +209,148 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide transition={['fade']} bgColor="tertiary">
+          <Heading size={2} fit caps lineHeight={1} textColor="secondary">
+            Push Notifications
+          </Heading>
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="tertiary">
+          <Heading size={6} textColor="secondary" caps>
+            Push Notifications – get existing subscription
+          </Heading>
+
+          <CodePane textSize={25} lang="js" source={pushGetSubscribtionExample} />
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="tertiary">
+          <Heading size={6} textColor="secondary" caps>
+            Push Notifications – subscribe
+          </Heading>
+
+          <CodePane textSize={25} lang="js" source={pushSubscribeExample} />
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="tertiary">
+          <Heading size={6} textColor="secondary" caps>
+            Push Notifications – Receive & show
+          </Heading>
+
+          <CodePane textSize={25} lang="js" source={pushShowNotificationExample} />
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="tertiary">
+          <Heading size={6} textColor="secondary" caps>
+            Push Notifications – Send
+          </Heading>
+
+          <Text textColor="primary">
+            Usually you dispatch notifications from backend, but you can test with
+            <Link href="https://web-push-codelab.glitch.me/" target="_blank">
+              Push Notifiactions Companion
+            </Link>
+          </Text>
+
+          <Notes>
+            <ul>
+              <li>Otrzymujemy parę kluczy – publiczny i prywatny</li>
+              <li>Wykorzystujemy pobrany wcześniej obiekt `subscription`</li>
+              <li>Powiadomienie może mieć dowolny format</li>
+              <li>Dane dostajemy w event.data</li>
+            </ul>
+          </Notes>
+        </Slide>
+
+
+        <Slide transition={['fade']} bgColor="tertiary">
+          <Heading size={2} fit caps lineHeight={1} textColor="secondary">
+            PostMessage API
+          </Heading>
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="tertiary">
+          <Heading size={6} textColor="secondary" caps>
+            PostMessage API – listen
+          </Heading>
+
+          <CodePane textSize={25} lang="js" source={listenPostMessageExample} />
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="tertiary">
+          <Heading size={6} textColor="secondary" caps>
+            PostMessage API – send
+          </Heading>
+
+          <CodePane textSize={25} lang="js" source={sendPostMessageExample} />
+
+          <Notes>
+            <ul>
+              <li>Klient to dowolna strona kontrolowana przez SW</li>
+              <li>Klientów może być wiele – np. kilka otwartych tabów</li>
+              <li>Treść wiadomości ma dowolny typ, który można zserializować</li>
+            </ul>
+          </Notes>
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="tertiary">
+          <Heading size={2} fit caps lineHeight={1} textColor="secondary">
+            Background Sync
+          </Heading>
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="tertiary">
+          <Heading size={6} textColor="secondary" caps>
+            Background Sync – Overview
+          </Heading>
+
+          <List textColor="primary">
+            <ListItem>You can run code even if web page is closed</ListItem>
+            <ListItem>Your users don't have to wait for a requests completion</ListItem>
+            <ListItem>You can repeat a request if it fails due to networking problems</ListItem>
+            <ListItem>You can run a background code when device reconnects to a network</ListItem>
+          </List>
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="tertiary">
+          <Heading size={6} textColor="secondary" caps>
+            Background Sync – register
+          </Heading>
+
+          <CodePane textSize={25} lang="js" source={backgroundSyncRegisterExample} />
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="tertiary">
+          <Heading size={6} textColor="secondary" caps>
+            Background Sync – use
+          </Heading>
+
+          <CodePane textSize={25} lang="js" source={backgroundSyncUseExample} />
+        </Slide>
+
+        <Slide transition={['fade']} bgColor="tertiary">
           <Heading size={6} textColor="secondary" caps>
             Browser Support
           </Heading>
 
-          <Link href="https://jakearchibald.github.io/isserviceworkerready/index.html">
+          <Link href="https://jakearchibald.github.io/isserviceworkerready/index.html" target="_blank">
             https://jakearchibald.github.io
           </Link>
         </Slide>
 
         <Slide transition={['fade']} bgColor="tertiary">
           <Heading size={6} textColor="secondary" caps>
-            Sources
+            Links
           </Heading>
 
           <List textColor="primary">
             <ListItem>
               <Link href="https://developers.google.com/web/fundamentals/primers/service-workers/">
                 Google Developers Guide
+              </Link>
+            </ListItem>
+
+            <ListItem>
+              <Link href="https://web-push-codelab.glitch.me/">
+                Push Notifiactions Companion
               </Link>
             </ListItem>
           </List>

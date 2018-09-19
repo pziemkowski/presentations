@@ -1,0 +1,12 @@
+// sw.js
+
+self.addEventListener('push', (event) => {
+    const notification = self.registration
+        .showNotification(title, {
+            body: 'Some message',
+            icon: '/images/icon.png',
+            tag: 'simple-tag'
+        });
+
+    event.waitUntil(notification);
+});

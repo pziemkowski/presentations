@@ -1,0 +1,12 @@
+// main.js
+
+navigator.serviceWorker.ready.then((registration) => {
+    registration.pushManager
+        .getSubscription()
+        .then((subscription) => {
+            if (subscription) {
+                sendSubscriptionToBackend(subscription);
+            }
+        });
+
+});
